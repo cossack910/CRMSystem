@@ -79,6 +79,25 @@ touch ja.json
 }
 ```
 
-####
+##### breeze で出来るやつ
 
 https://github.com/askdkc/breezejp
+
+#### breeze インストール
+
+```
+docker exec -it crmsystem composer require laravel/breeze --dev
+```
+
+#### vue インストール
+
+```
+docker exec -it crmsystem php artisan breeze:install vue
+```
+
+#### npm インストール
+
+```
+docker exec -it crmsystem npm install
+docker exec -it crmsystem npm run dev
+```
