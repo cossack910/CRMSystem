@@ -2,6 +2,12 @@
 
 ## 環境構築構
 
+#### npm 開発サーバー起動 (Inertia 使用のため開発時は必ず起動する　)
+
+```
+docker exec -it crmsystem npm run dev
+```
+
 #### プロジェクト作成
 
 ```
@@ -99,10 +105,4 @@ docker exec -it crmsystem php artisan breeze:install vue
 
 ```
 docker exec -it crmsystem npm install
-```
-
-#### npm 開発サーバー起動
-
-```
-docker exec -it crmsystem npm run dev
 ```
