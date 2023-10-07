@@ -13,6 +13,11 @@ class InertiaTestController extends Controller
         return Inertia::render('Inertia/Index'); //Pages配下のInertia/Index.vueが表示される
     }
 
+    public function create()
+    {
+        return Inertia::render('Inertia/Create');
+    }
+
     public function show($id) {
         return Inertia::render('Inertia/Show', [
             'id' => $id
