@@ -96,7 +96,7 @@ https://github.com/askdkc/breezejp
 docker exec -it crmsystem composer require laravel/breeze --dev
 ```
 
-#### vue インストール
+#### vue(inertia) インストール
 
 ```
 docker exec -it crmsystem php artisan breeze:install vue
