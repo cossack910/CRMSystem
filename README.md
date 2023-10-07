@@ -1,4 +1,6 @@
 # CRMSystem
+## inertia公式
+https://inertiajs.com/
 
 ## 環境構築構
 
@@ -50,7 +52,6 @@ docker exec -it crmsystem composer require barryvdh/laravel-debugbar
 
 ```
 docker exec -it crmsystem php artisan cache:clear
-
 ```
 
 #### コンフィグクリア
