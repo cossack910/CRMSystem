@@ -1,5 +1,7 @@
 # CRMSystem
-## inertia公式
+
+## inertia 公式
+
 https://inertiajs.com/
 
 ## 環境構築構
@@ -89,6 +91,14 @@ touch ja.json
 ##### breeze で出来るやつ
 
 https://github.com/askdkc/breezejp
+
+```
+ docker exec -it crmsystem composer require askdkc/breezejp --dev
+```
+
+```
+docker exec -it crmsystem php artisan breezejp
+```
 
 #### breeze インストール
 
