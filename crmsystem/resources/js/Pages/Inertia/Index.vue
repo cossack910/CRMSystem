@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>aaaaa</template>
+<template>
+    <div v-if="$page.props.flash.message" class="bg-blue-300">
+        {{ $page.props.flash.message }}
+    </div>
+    aaaaa
+</template>
