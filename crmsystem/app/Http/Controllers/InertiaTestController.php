@@ -10,7 +10,9 @@ class InertiaTestController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Inertia/Index'); //Pages配下のInertia/Index.vueが表示される
+        return Inertia::render('Inertia/Index', [
+            'blogs' => Inertiatest::all()
+        ]); //Pages配下のInertia/Index.vueが表示される
     }
 
     public function create()
