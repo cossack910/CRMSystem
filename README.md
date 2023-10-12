@@ -93,7 +93,7 @@ touch ja.json
 https://github.com/askdkc/breezejp
 
 ```
- docker exec -it crmsystem composer require askdkc/breezejp --dev
+docker exec -it crmsystem composer require askdkc/breezejp --dev
 ```
 
 ```
