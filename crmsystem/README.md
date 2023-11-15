@@ -32,3 +32,9 @@ public に配置した画像などを外部からアクセスできるように�
 ```
 docker exec -it crmsystem php artisan storage:link
 ```
+
+### マイグレート時にシーダーを実行
+
+```
+docker exec -it crmsystem php artisan migrate:fresh --seed
+```
