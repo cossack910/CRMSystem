@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 defineProps({
     items: Array,
 });
@@ -25,11 +25,13 @@ defineProps({
                                 <div
                                     class="lg:w-2/3 w-full mx-auto overflow-auto"
                                 >
-                                    <button
+                                    <Link
+                                        as="button"
+                                        :href="route('items.create')"
                                         class="flex ml-auto my-4 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                                     >
-                                        Button
-                                    </button>
+                                        商品登録
+                                    </Link>
                                     <table
                                         class="table-auto w-full text-left whitespace-no-wrap"
                                     >
@@ -62,17 +64,40 @@ defineProps({
                                                 v-for="item in items"
                                                 :key="item.id"
                                             >
-                                                <td class="px-4 py-3">
+                                                <td
+                                                    class="border-b-2 border-gray-200 px-4 py-3"
+                                                >
                                                     {{ item.id }}
                                                 </td>
-                                                <td class="px-4 py-3">
+                                                <td
+                                                    class="border-b-2 border-gray-200 px-4 py-3"
+                                                >
                                                     {{ item.name }}
                                                 </td>
-                                                <td class="px-4 py-3">
+                                                <td
+                                                    class="border-b-2 border-gray-200 px-4 py-3"
+                                                >
                                                     {{ item.price }}
                                                 </td>
-                                                <td class="px-4 py-3">
-                                                    {{ item.is_selling }}
+                                                <td
+                                                    class="border-b-2 border-gray-200 px-4 py-3"
+                                                >
+                                                    <span
+                                                        v-if="
+                                                            item.is_selling ===
+                                                            1
+                                                        "
+                                                    >
+                                                        販売中
+                                                    </span>
+                                                    <span
+                                                        v-if="
+                                                            item.is_selling ===
+                                                            0
+                                                        "
+                                                    >
+                                                        停止中
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </tbody>
