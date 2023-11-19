@@ -212,7 +212,7 @@ return [
         'minute' => '分',
         'mobile' => '携帯',
         'month' => '月',
-        'name' => '名前',
+        'name' => '商品名',
         'national_code' => '国コード',
         'number' => '番号',
         'password' => 'パスワード',
@@ -247,6 +247,8 @@ return [
         'updated_at' => '更新日',
         'username' => 'ユーザー名',
         'year' => '年',
+        'memo' => 'メモ',
+        'price' => '料金',
     ],
 
 ];
