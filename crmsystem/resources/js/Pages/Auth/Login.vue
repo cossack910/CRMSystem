@@ -34,8 +34,6 @@ const submit = () => {
     <GuestLayout>
         <Head title="Log in" />
 
-        <BreezeValidationErrors class="mb-4" />
-
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
