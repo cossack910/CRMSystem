@@ -70,7 +70,18 @@ defineProps({
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
                                                 >
-                                                    {{ item.id }}
+                                                    <Link
+                                                        :href="
+                                                            route(
+                                                                'items.show',
+                                                                {
+                                                                    item: item.id,
+                                                                }
+                                                            )
+                                                        "
+                                                    >
+                                                        {{ item.id }}
+                                                    </Link>
                                                 </td>
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
