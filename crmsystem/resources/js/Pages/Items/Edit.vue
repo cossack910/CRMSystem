@@ -3,16 +3,17 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import { router } from "@inertiajs/vue3";
-import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 
-defineProps({
-    errors: Object,
+const props = defineProps({
+    item: Object,
 });
 
 const form = reactive({
-    name: null,
-    memo: null,
-    price: null,
+    id: props.item.id,
+    name: props.item.name,
+    memo: props.item.memo,
+    price: props.item.price,
+    is_selling: props.is_selling,
 });
 
 const storeItem = () => {
@@ -21,11 +22,11 @@ const storeItem = () => {
 </script>
 
 <template>
-    <Head title="商品登録" />
+    <Head title="商品編集" />
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                商品登録
+                商品編集
             </h2>
         </template>
 
@@ -34,7 +35,6 @@ const storeItem = () => {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <section class="text-gray-600 body-font relative">
-                            <BreezeValidationErrors :errors="errors" />
                             <form @submit.prevent="storeItem">
                                 <div class="container px-5 py-8 mx-auto">
                                     <div class="lg:w-1/2 md:w-2/3 mx-auto">
