@@ -79,6 +79,7 @@ defineProps({
                                                                 }
                                                             )
                                                         "
+                                                        class="text-blue-700"
                                                     >
                                                         {{ item.id }}
                                                     </Link>
