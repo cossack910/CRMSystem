@@ -1,6 +1,8 @@
 <script setup>
+import FlashMessage from "@/Components/FlashMessage.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
+
 defineProps({
     items: Array,
 });
@@ -22,6 +24,7 @@ defineProps({
                     <div class="p-6 text-gray-900">
                         <section class="text-gray-600 body-font">
                             <div class="container px-5 py-8 mx-auto">
+                                <FlashMessage />
                                 <div
                                     class="lg:w-2/3 w-full mx-auto overflow-auto"
                                 >
@@ -67,7 +70,19 @@ defineProps({
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
                                                 >
-                                                    {{ item.id }}
+                                                    <Link
+                                                        :href="
+                                                            route(
+                                                                'items.show',
+                                                                {
+                                                                    item: item.id,
+                                                                }
+                                                            )
+                                                        "
+                                                        class="text-blue-700"
+                                                    >
+                                                        {{ item.id }}
+                                                    </Link>
                                                 </td>
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
