@@ -16,8 +16,8 @@ const form = reactive({
     is_selling: props.is_selling,
 });
 
-const storeItem = () => {
-    router.post("/items", form);
+const updateItem = (id) => {
+    router.put(route("items.update", { item: id }), form);
 };
 </script>
 
@@ -35,7 +35,7 @@ const storeItem = () => {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <section class="text-gray-600 body-font relative">
-                            <form @submit.prevent="storeItem">
+                            <form @submit.prevent="updateItem(form.id)">
                                 <div class="container px-5 py-8 mx-auto">
                                     <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                         <div class="flex flex-wrap -m-2">
@@ -125,7 +125,7 @@ const storeItem = () => {
                                                 <button
                                                     class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                                                 >
-                                                    登録
+                                                    更新
                                                 </button>
                                             </div>
                                         </div>
