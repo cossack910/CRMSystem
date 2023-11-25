@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use Inertia\Inertia;
 
 class CustomerController extends Controller
 {
@@ -13,7 +14,14 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        // $getTest = Customer::select('id', 'name', 'kana', 'tel')->get();
+        // $getPagenate = Customer::select('id', 'name', 'kana', 'tel')->paginate(50);
+
+        // dd($getTest, $getPagenate);
+
+        return Inertia::render('Customers/Index', [
+            'customers' => Customer::select('id', 'name', 'kana', 'tel')->paginate(50)
+        ]);
     }
 
     /**
