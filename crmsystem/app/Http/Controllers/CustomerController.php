@@ -6,21 +6,21 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $getTest = Customer::select('id', 'name', 'kana', 'tel')->get();
-        // $getPagenate = Customer::select('id', 'name', 'kana', 'tel')->paginate(50);
-
-        // dd($getTest, $getPagenate);
-
+        $search = $request->query('search');
+        $customers = Customer::searchCustomers($search)->select('id', 'name' , 'kana', 'tel')->paginate(50);
+Log::info($search);
         return Inertia::render('Customers/Index', [
-            'customers' => Customer::select('id', 'name', 'kana', 'tel')->paginate(50)
+            'customers' => $customers
         ]);
     }
 
@@ -45,7 +45,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+
     }
 
     /**
