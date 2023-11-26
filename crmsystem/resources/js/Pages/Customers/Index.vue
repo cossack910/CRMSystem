@@ -1,12 +1,19 @@
 <script setup>
 import FlashMessage from "@/Components/FlashMessage.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, router } from "@inertiajs/vue3";
 import Pagination from "@/Components/Pagination.vue";
+import { ref } from "vue";
 
 defineProps({
     customers: Object,
 });
+
+const search = ref("");
+
+const searchCustomers = () => {
+    router.get(route("customers.index", { search: search.value }));
+};
 </script>
 
 <template>
@@ -29,12 +36,25 @@ defineProps({
                                 <div
                                     class="lg:w-2/3 w-full mx-auto overflow-auto"
                                 >
+                                    <div>
+                                        <input
+                                            type="text"
+                                            name="search"
+                                            v-model="search"
+                                        />
+                                        <button
+                                            class="bg-blue-300 text-white py-2 px-2"
+                                            @click="searchCustomers"
+                                        >
+                                            検索
+                                        </button>
+                                    </div>
                                     <Link
                                         as="button"
                                         :href="route('customers.create')"
                                         class="flex ml-auto my-4 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                                     >
-                                        顧客登録
+                                        顧客一覧
                                     </Link>
                                     <table
                                         class="table-auto w-full text-left whitespace-no-wrap"
@@ -70,7 +90,9 @@ defineProps({
                                             >
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
-                                                ></td>
+                                                >
+                                                    {{ customer.id }}
+                                                </td>
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
                                                 >
