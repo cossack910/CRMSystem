@@ -29,7 +29,7 @@ Log::info($search);
      */
     public function create()
     {
-        //
+        return Inertia::render('Customers/Create');
     }
 
     /**
