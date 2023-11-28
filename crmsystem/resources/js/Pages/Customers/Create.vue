@@ -21,8 +21,8 @@ const form = reactive({
     memo: null,
 });
 
-const storeItem = () => {
-    router.post(route("customers.create"), form);
+const storeCustomer = () => {
+    router.post(route("customers.store"), form);
 };
 </script>
 
@@ -41,7 +41,7 @@ const storeItem = () => {
                     <div class="p-6 text-gray-900">
                         <section class="text-gray-600 body-font relative">
                             <BreezeValidationErrors :errors="errors" />
-                            <form @submit.prevent="storeItem">
+                            <form @submit.prevent="storeCustomer">
                                 <div class="container px-5 py-8 mx-auto">
                                     <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                         <div class="flex flex-wrap -m-2">

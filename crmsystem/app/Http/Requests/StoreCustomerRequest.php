@@ -11,7 +11,7 @@ class StoreCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'max:50'],
+            'kana' => ['required', 'regex:/^[ァ-ヾ]+$/u','max:50'],
+            'tel' => ['required', 'max:20', 'unique:customers,tel'],
+            'email' => ['required', 'email', 'max:255', 'unique:customers,email'],
+            'postcode' => ['required', 'max:7'],
+            'address' => ['required', 'max:100'],
+            'birthday' => ['date'],
+            'gender' => ['required'],
+            'memo' => ['max:1000'],
         ];
     }
 }
