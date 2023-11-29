@@ -4,6 +4,7 @@ import { Head } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import { router } from "@inertiajs/vue3";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
+import { Core as YubinBangoCore } from "yubinbango-core2";
 
 defineProps({
     errors: Object,
@@ -20,6 +21,13 @@ const form = reactive({
     gender: null,
     memo: null,
 });
+
+const fetchAddress = () => {
+    new YubinBangoCore(String(form.postcode), (value) => {
+        // region=都道府県, locality=市区町村, street=町域
+        form.address = value.region + value.locality + value.street;
+    });
+};
 
 const storeCustomer = () => {
     router.post(route("customers.store"), form);
@@ -120,6 +128,7 @@ const storeCustomer = () => {
                                                         type="text"
                                                         id="postcode"
                                                         name="postcode"
+                                                        @change="fetchAddress"
                                                         v-model="form.postcode"
                                                         class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                                     />
