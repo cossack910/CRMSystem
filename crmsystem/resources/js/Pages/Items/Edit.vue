@@ -1,8 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, router } from "@inertiajs/vue3";
 import { reactive } from "vue";
-import { router } from "@inertiajs/vue3";
 
 const props = defineProps({
     item: Object,
