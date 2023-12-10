@@ -5,6 +5,7 @@ import { onMounted, reactive, ref, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import { getToday } from "@/common";
+import MicroModal from "@/Components/MicroMordal.vue";
 
 const props = defineProps({
     customers: Array,
@@ -92,6 +93,7 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
                                                 </div>
 
                                                 <div class="relative">
+                                                    <MicroModal />
                                                     <label
                                                         for="customer"
                                                         class="leading-7 text-sm text-gray-600"
