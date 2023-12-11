@@ -1,9 +1,16 @@
 <script setup>
-import { ref } from "vue";
+import axios from "axios";
+import { ref, onMounted } from "vue";
 const isShow = ref(false);
 const toggleStatus = () => {
     isShow.value = !isShow.value;
 };
+
+onMounted(() => {
+    axios.get("/v1/user").then((res) => {
+        console.log(res);
+    });
+});
 </script>
 
 <template>
