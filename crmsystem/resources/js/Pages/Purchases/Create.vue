@@ -54,6 +54,10 @@ const storePurchase = () => {
     router.post(route("purchases.store"), form);
 };
 
+const setCustomerId = (id) => {
+    form.customer_id = id;
+};
+
 const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 </script>
 
@@ -98,7 +102,11 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
                                                         class="leading-7 text-sm text-gray-600"
                                                         >会員名</label
                                                     >
-                                                    <MicroModal />
+                                                    <MicroModal
+                                                        @update:customer-id="
+                                                            setCustomerId
+                                                        "
+                                                    />
                                                 </div>
                                             </div>
 

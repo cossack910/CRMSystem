@@ -21,6 +21,14 @@ const searchCustomers = async () => {
 const toggleStatus = () => {
     isShow.value = !isShow.value;
 };
+
+const emit = defineEmits(["update:customerId"]);
+
+const setCustomer = (e) => {
+    search.value = e.kana;
+    emit("update:customerId", e.id);
+    toggleStatus();
+};
 </script>
 
 <template>
