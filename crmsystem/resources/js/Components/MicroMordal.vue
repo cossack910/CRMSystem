@@ -18,19 +18,22 @@ const searchCustomers = async () => {
         console.log(e.message);
     }
 };
+const toggleStatus = () => {
+    isShow.value = !isShow.value;
+};
 </script>
 
 <template>
     <div v-show="isShow" class="modal" id="modal-1" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
             <div
-                class="modal__container"
+                class="modal__container w-2/3"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="modal-1-title"
             >
                 <header class="modal__header">
-                    <h2 class="modal__title" id="modal-1-title">Micromodal</h2>
+                    <h2 class="modal__title" id="modal-1-title">顧客検索</h2>
                     <button
                         @click="toggleStatus"
                         type="button"
@@ -40,20 +43,76 @@ const searchCustomers = async () => {
                     ></button>
                 </header>
                 <main class="modal__content" id="modal-1-content">
-                    <p>
-                        Try hitting the <code>tab</code> key and notice how the
-                        focus stays within the modal itself. Also,
-                        <code>esc</code> to close modal.
-                    </p>
+                    <div v-if="customers.value">
+                        <table
+                            class="table-auto w-full text-left whitespace-no-wrap"
+                        >
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"
+                                    >
+                                        Id
+                                    </th>
+                                    <th
+                                        class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
+                                    >
+                                        氏名
+                                    </th>
+                                    <th
+                                        class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
+                                    >
+                                        カナ
+                                    </th>
+                                    <th
+                                        class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
+                                    >
+                                        電話番号
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="customer in customers.value.data"
+                                    :key="customer.id"
+                                >
+                                    <td
+                                        class="border-b-2 border-gray-200 px-4 py-3"
+                                    >
+                                        <button
+                                            type="button"
+                                            class="text-blue-400"
+                                            @click="
+                                                setCustomer({
+                                                    id: customer.id,
+                                                    kana: customer.kana,
+                                                })
+                                            "
+                                        >
+                                            {{ customer.id }}
+                                        </button>
+                                    </td>
+                                    <td
+                                        class="border-b-2 border-gray-200 px-4 py-3"
+                                    >
+                                        {{ customer.name }}
+                                    </td>
+                                    <td
+                                        class="border-b-2 border-gray-200 px-4 py-3"
+                                    >
+                                        {{ customer.kana }}
+                                    </td>
+                                    <td
+                                        class="border-b-2 border-gray-200 px-4 py-3"
+                                    >
+                                        {{ customer.tel }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </main>
                 <footer class="modal__footer">
-                    <button
-                        @click="toggleStatus"
-                        type="button"
-                        class="modal__btn modal__btn-primary"
-                    >
-                        Continue
-                    </button>
                     <button
                         @click="toggleStatus"
                         type="button"
@@ -61,17 +120,22 @@ const searchCustomers = async () => {
                         data-micromodal-close
                         aria-label="Close this dialog window"
                     >
-                        Close
+                        閉じる
                     </button>
                 </footer>
             </div>
         </div>
     </div>
-    <input name="customer" v-model="search" />
+    <input
+        name="customer"
+        v-model="search"
+        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-3"
+    />
     <button
         type="button"
         @click="searchCustomers"
         data-micromodal-trigger="modal-1"
+        class="flex mx-auto text-white bg-teal-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-3"
     >
         検索する
     </button>
