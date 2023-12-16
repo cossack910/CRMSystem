@@ -1,5 +1,7 @@
 import "./bootstrap";
+import "./micromordal";
 import "../css/app.css";
+import "../css/micromordal.css";
 
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";

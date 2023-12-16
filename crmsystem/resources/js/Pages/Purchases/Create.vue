@@ -5,6 +5,7 @@ import { onMounted, reactive, ref, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import { getToday } from "@/common";
+import MicroModal from "@/Components/MicroMordal.vue";
 
 const props = defineProps({
     customers: Array,
@@ -53,6 +54,10 @@ const storePurchase = () => {
     router.post(route("purchases.store"), form);
 };
 
+const setCustomerId = (id) => {
+    form.customer_id = id;
+};
+
 const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 </script>
 
@@ -97,22 +102,11 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
                                                         class="leading-7 text-sm text-gray-600"
                                                         >会員名</label
                                                     >
-                                                    <select
-                                                        name="customer"
-                                                        v-model="
-                                                            form.customer_id
+                                                    <MicroModal
+                                                        @update:customer-id="
+                                                            setCustomerId
                                                         "
-                                                        class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                                    >
-                                                        <option
-                                                            v-for="customer in customers"
-                                                            :value="customer.id"
-                                                            :key="customer.id"
-                                                        >
-                                                            {{ customer.id }} :
-                                                            {{ customer.name }}
-                                                        </option>
-                                                    </select>
+                                                    />
                                                 </div>
                                             </div>
 
@@ -200,7 +194,7 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
                                             </div>
 
                                             <div class="p-2 w-full">
-                                                <div class="relative">
+                                                <div class="">
                                                     <label for="" class=""
                                                         >合計金額</label
                                                     >
