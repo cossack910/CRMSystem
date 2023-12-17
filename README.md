@@ -4,6 +4,36 @@
 
 https://inertiajs.com/
 
+## clone 時の儀式
+
+#### env 設定(開発用 db 設定)
+
+```
+cp .env.example .env
+```
+
+#### composer のインストール
+
+Laravel のプロジェクトは基本的に /vendor フォルダは個々の環境に依存して Git の管理下に置かれないためインストールし直す
+
+```
+docker exec -it crmsystem composer install
+```
+
+#### マイグレーション実行（必要時のみ）
+
+開発 DB がコンテナなので, laravel_ucrm DB を作成後に実行
+
+```
+docker exec -it crmsystem php artisan migrate:fresh --seed
+```
+
+#### npm インストール
+
+```
+docker exec -it crmsystem npm install
+```
+
 ## 環境構築構
 
 #### npm 開発サーバー起動 (Inertia 使用のため開発時は必ず起動する　)
@@ -22,12 +52,6 @@ docker exec -it crmsystem composer create-project laravel/laravel crmsystem
 
 ```
 docker exec -it crmsystem php artisan migrate
-```
-
-#### env 設定(testdb)
-
-```
-mv .env.example .env
 ```
 
 #### crmsystem/config/app.php
