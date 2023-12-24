@@ -1,8 +1,9 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import dayjs from "dayjs";
+import { onMounted } from "vue";
 import FlashMessage from "@/Components/FlashMessage.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, router } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
@@ -109,7 +110,13 @@ onMounted(() => {
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
                                                 >
-                                                    {{ order.created_at }}
+                                                    {{
+                                                        dayjs(
+                                                            order.created_at
+                                                        ).format(
+                                                            "YYYY-MM-DD HH:mm:ss"
+                                                        )
+                                                    }}
                                                 </td>
                                             </tr>
                                         </tbody>
