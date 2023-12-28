@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { onMounted } from "vue";
 import FlashMessage from "@/Components/FlashMessage.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
@@ -90,7 +90,18 @@ onMounted(() => {
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"
                                                 >
-                                                    {{ order.id }}
+                                                    <Link
+                                                        :href="
+                                                            route(
+                                                                'purchases.show',
+                                                                {
+                                                                    purchase:
+                                                                        order.id,
+                                                                }
+                                                            )
+                                                        "
+                                                        >{{ order.id }}</Link
+                                                    >
                                                 </td>
                                                 <td
                                                     class="border-b-2 border-gray-200 px-4 py-3"

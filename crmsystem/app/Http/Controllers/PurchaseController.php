@@ -64,6 +64,7 @@ class PurchaseController extends Controller
             DB::commit();
             return to_route('dashboard');
         } catch (\Exception $e) {
+            Log::info($e);
             Log::alert("購入登録処理失敗");
             DB::rollBack();
         }
@@ -74,7 +75,15 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        //小計
+        $items = Order::where('id', $purchase->id)->get();
+        //合計
+        $order = Order::groupBy('id')->where('id', $purchase->id)->selectRaw('id, customer_name, sum(subtotal) as total, status, created_at')->get();
+
+        return Inertia::render('Purchases/Show', [
+            'items' => $items,
+            'order' => $order
+        ]);
     }
 
     /**

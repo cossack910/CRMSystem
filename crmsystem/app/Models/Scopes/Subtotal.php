@@ -14,6 +14,7 @@ class Subtotal implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         $sql = 'select p.id as id
+        ,i.id as item_id
         ,ip.id as pivot_id
         ,i.price * ip.quantity as subtotal
         ,c.name as customer_name
