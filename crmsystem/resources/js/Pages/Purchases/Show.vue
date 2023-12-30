@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, router } from "@inertiajs/vue3";
+import { Head, Link, router } from "@inertiajs/vue3";
 import { onMounted, reactive, ref, computed } from "vue";
 import dayjs from "dayjs";
 
@@ -216,12 +216,30 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
                                                     円
                                                 </div>
                                             </divdiv>
-                                            <div class="p-2 w-full">
-                                                <button
+                                            <div
+                                                v-if="
+                                                    props.order[0].status ==
+                                                    true
+                                                "
+                                                class="p-2 w-full"
+                                            >
+                                                <Link
+                                                    as="button"
+                                                    :href="
+                                                        route(
+                                                            'purchases.edit',
+                                                            {
+                                                                purchase:
+                                                                    props
+                                                                        .order[0]
+                                                                        .id,
+                                                            }
+                                                        )
+                                                    "
                                                     class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                                                 >
-                                                    登録
-                                                </button>
+                                                    編集する
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
