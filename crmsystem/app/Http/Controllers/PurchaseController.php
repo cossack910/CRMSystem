@@ -123,7 +123,17 @@ class PurchaseController extends Controller
      */
     public function update(UpdatePurchaseRequest $request, Purchase $purchase)
     {
-        //
+        $purchase->status = $request->status;
+        $purchase->save();
+
+        $items = [];
+        foreach ($request->items as $item) {
+            $items = $items + [
+                $item['id'] => ['quantity' => $item['quantity']]
+            ];
+        }
+        $purchase->items()->sync($items);
+        return to_route('dashboard');
     }
 
     /**
